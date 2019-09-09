@@ -6,9 +6,9 @@
     <title>Title</title>
 </head>
 <body>
+    <h1>{{ message }}</h1>
     {% if tournaments %}
         {% for tournament in tournaments %}
-        <h1>{{ message }}</h1>
         <a href="{% url 'tournament-detail' tournament.slug %}"><h2>{{ tournament.name }}</h2></a>
         {% endfor %}
     {% else %}
