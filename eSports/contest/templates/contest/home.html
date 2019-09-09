@@ -9,7 +9,7 @@
     {% if tournaments %}
         {% for tournament in tournaments %}
         <h1>{{ message }}</h1>
-        <a href="#"><h2>{{ tournament.name }}</h2></a>
+        <a href="{% url 'tournament-detail' tournament.slug %}"><h2>{{ tournament.name }}</h2></a>
         {% endfor %}
     {% else %}
         <h2>There are no ongoing tournaments right now</h2>
