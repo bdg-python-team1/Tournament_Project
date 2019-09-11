@@ -14,5 +14,13 @@
     {% else %}
         <h2>There are no ongoing tournaments right now</h2>
     {% endif %}
+<br>
+{% if user.is_authenticated %}
+    <a href="/logout/">Logout</a><br />
+    <h1>... hello {{ user.username }}!</h1>
+{% else %}
+<a href="/register/">Register Here</a><br />
+<a href="/login/">Login</a><br />
+{% endif %}
 </body>
 </html>

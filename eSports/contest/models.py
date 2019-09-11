@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+
 class Tournament(models.Model):
     name = models.CharField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -20,7 +21,6 @@ class Tournament(models.Model):
         self.slug = slugify(self.name)
         super(Tournament, self).save(*args, **kwargs)
 
-
     def __str__(self):
         return self.name
 
@@ -33,7 +33,7 @@ class Match(models.Model):
     score2 = models.PositiveIntegerField()
 
     class Meta:
-        verbose_name_plural = 'matches'
+        verbose_name_plural = 'Matches'
 
     def __str__(self):
         return str(self.player1) + ' - ' + str(self.player2)
