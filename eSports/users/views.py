@@ -22,7 +22,6 @@ def register(request):
                 profile.picture = request.FILES['picture']
             profile.save()
             registered = True
-
         else:
             print(user_form.errors, profile_form.errors)
 
@@ -34,6 +33,7 @@ def register(request):
 
 
 def user_login(request):
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

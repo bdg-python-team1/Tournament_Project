@@ -1,5 +1,4 @@
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,11 +15,11 @@
     {% endif %}
 <br>
 {% if user.is_authenticated %}
-    <a href="/logout/">Logout</a><br />
+                <a href="{% url 'auth_logout' %}?next=/">Logout</a>
     <h1>... hello {{ user.username }}!</h1>
 {% else %}
-<a href="/register/">Register Here</a><br />
-<a href="/login/">Login</a><br />
+<a href="{% url 'registration_register' %}">Register Here</a><br />
+<a href="{% url 'auth_login' %}">Login</a><br />
 {% endif %}
 </body>
 </html>
