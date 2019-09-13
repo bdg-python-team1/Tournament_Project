@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse
 
 def register(request):
     registered = False
@@ -41,7 +41,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return redirect(reverse('home'))
             else:
                 return HttpResponse("Your eSports account is disabled.")
         else:
@@ -53,4 +53,4 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return redirect(reverse('auth_login'))

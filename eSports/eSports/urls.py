@@ -21,8 +21,5 @@ from users import views as user_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('contest.urls')),
-    path('register/', user_views.register, name='register'),
-    path('login/', user_views.user_login, name='login'),
-    path('logout/', user_views.user_logout, name='logout'),
     path('accounts/', include('registration.backends.simple.urls'))
 ]
