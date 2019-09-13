@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'contest',
     'users',
     'registration',
-    'bootstrap_toolkit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

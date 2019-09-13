@@ -1,33 +1,26 @@
-{% extends 'contest/base.html' %}
 
-{% load staticfiles %}
-
-{% block title %}Index{% endblock %}
-
-        {% block body_block %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    {% if tournaments %}
+        {% for tournament in tournaments %}
+        <a href="{% url 'tournament-detail' tournament.slug %}"><h2>{{ tournament.name }}</h2></a>
+        {% endfor %}
+    {% else %}
+        <h2>There are no ongoing tournaments right now</h2>
+    {% endif %}
+<br>
 {% if user.is_authenticated %}
-    <div class="page-header">
-
-                <h1>Rango says... hello {{ user.username }}!</h1>
-            {% else %}
-                <h1>Rango says... hello world!</h1>
-            {% endif %}
-</div>
-
-          <div class="panel panel-primary">
-    <div class="panel-heading">
-            <h3 class="panel-title">Categories</h3>
-    </div>
-</div>
-
-              {% if tournaments %}
-                     <ul class="list-group">
-                        {% for tournament in tournaments %}
-                         <li class="list-group-item"> <a href="{% url 'tournament-detail'  tournament.slug %}">{{ tournament.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <strong>There are no tournaments present.</strong>
-                {% endif %}
-
-{% endblock %}
+    <a href="/logout/">Logout</a><br />
+    <h1>... hello {{ user.username }}!</h1>
+{% else %}
+<a href="/register/">Register Here</a><br />
+<a href="/login/">Login</a><br />
+{% endif %}
+</body>
+</html>
