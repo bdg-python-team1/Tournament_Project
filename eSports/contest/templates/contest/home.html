@@ -2,6 +2,20 @@
 
 {% block body_block %}
 <html lang="en">
+<div class="jumbotron p-4">
+<div class="container">
+<div>
+<h2 class="h2">
+{% if user.is_authenticated %}
+Welcome {{ user.username }}!
+{% else %}
+hey there partner!
+{% endif %}
+</h2>
+<strong>{{ boldmessage }}</strong>
+</div>
+</div>
+</div>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>

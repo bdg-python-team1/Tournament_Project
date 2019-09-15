@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from datetime import datetime
 
 
 class Tournament(models.Model):
     name = models.CharField(max_length=250)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_created = models.DateTimeField(auto_now=True)
+    date_created = models.DateTimeField(default=datetime.now())
     player1 = models.CharField(max_length=150)
     player2 = models.CharField(max_length=150)
     player3 = models.CharField(max_length=150)
@@ -15,7 +15,7 @@ class Tournament(models.Model):
     player6 = models.CharField(max_length=150)
     player7 = models.CharField(max_length=150)
     player8 = models.CharField(max_length=150)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
