@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from .models import Tournament, Match
 from .forms import TournamentForm, MatchForm
+from django.views import View
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 
 def home(request):
     tournament_list = Tournament.objects.all()
@@ -24,14 +28,20 @@ def tournament_detail(request, tournament_name_slug):
     return render(request, 'contest/tournament_detail.html', context_dict)
 
 
-def add_tournament(request):
-    form = TournamentForm()
-    if request.method == 'POST':
+class AddTournamentView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        form = TournamentForm()
+        return render(request, 'contest/add_tournament.html', {'form': form})
+
+    @method_decorator(login_required)
+    def post(self, request):
         form = TournamentForm(request.POST)
+
         if form.is_valid():
             form.save(commit=True)
             return home(request)
         else:
             print(form.errors)
 
-    return render(request, 'contest/add_tournament.html', {'form': form})
+        return render(request, 'contest/add_tournament.html', {'form': form})

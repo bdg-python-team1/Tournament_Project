@@ -14,6 +14,12 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
+
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -57,7 +63,7 @@ ROOT_URLCONF = 'eSports.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR, STATIC_DIR, MEDIA_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,6 +127,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+
 
 REGISTRATION_OPEN = True                # If True, users can register
 REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.

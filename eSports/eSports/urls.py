@@ -16,10 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users import views as user_views
+from registration.backends.simple.views import RegistrationView
+from django.urls import reverse
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return reverse('register_profile')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('contest.urls')),
-    path('accounts/', include('registration.backends.simple.urls'))
+    path('accounts/register/',
+         MyRegistrationView.as_view(),
+         name='registration_register'),
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('register_profile/', user_views.register_profile, name='register_profile'),
 ]
